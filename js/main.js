@@ -39,7 +39,9 @@ function initMobileMenu() {
   const overlay = document.querySelector('.mobile-nav-overlay');
   const drawerLinks = document.querySelectorAll('.mobile-nav-link, .mobile-drawer-footer a');
 
-  if (!hamburgerBtn || !drawer || !overlay) return;
+  const closeBtn = document.querySelector('.mobile-drawer-close-btn');
+
+  if (!drawer || !overlay) return;
 
   const toggleDrawer = () => {
     const isOpen = drawer.classList.contains('open');
@@ -53,19 +55,20 @@ function initMobileMenu() {
   const openDrawer = () => {
     drawer.classList.add('open');
     overlay.classList.add('open');
-    hamburgerBtn.classList.add('active');
+    if (hamburgerBtn) hamburgerBtn.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
 
   const closeDrawer = () => {
     drawer.classList.remove('open');
     overlay.classList.remove('open');
-    hamburgerBtn.classList.remove('active');
+    if (hamburgerBtn) hamburgerBtn.classList.remove('active');
     document.body.style.overflow = '';
   };
 
-  hamburgerBtn.addEventListener('click', toggleDrawer);
+  if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleDrawer);
   overlay.addEventListener('click', closeDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
 
   drawerLinks.forEach(link => {
     link.addEventListener('click', () => {

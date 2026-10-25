@@ -72,6 +72,8 @@ html {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -80,6 +82,7 @@ body {
   color: var(--text-secondary);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
   position: relative;
   min-height: 100vh;
 }
@@ -588,23 +591,62 @@ ul, ol {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 100%;
-  max-width: 360px;
+  width: 86%;
+  max-width: 340px;
   height: 100vh;
+  height: 100dvh;
   background: #111111;
   border-left: 1px solid var(--border-medium);
-  z-index: 999;
-  padding: 100px 32px 40px;
+  z-index: 1050;
+  padding: 24px 20px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: right var(--transition-normal);
   box-shadow: -20px 0 50px rgba(0, 0, 0, 0.9);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav-drawer.open {
   right: 0;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mobile-drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-drawer-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  touch-action: manipulation;
+}
+
+.mobile-drawer-close-btn:hover,
+.mobile-drawer-close-btn:active {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
 }
 
 .mobile-nav-overlay {
@@ -613,9 +655,11 @@ ul, ol {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(8px);
-  z-index: 998;
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1040;
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-normal);

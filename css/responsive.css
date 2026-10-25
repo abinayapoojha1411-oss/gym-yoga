@@ -1,77 +1,127 @@
 /* ==========================================================================
-   FORGE FITNESS STUDIO - RESPONSIVE STYLESHEET
-   Mobile-first & breakpoints for tablets, desktops & ultra-wide screens
+   FORGE FITNESS STUDIO - MASTER RESPONSIVE STYLESHEET
+   Mobile-first & fully accessible layout optimization for all screen sizes:
+   - Extra Small Mobile (<= 360px - iPhone SE, small Galaxy)
+   - Standard Mobile (<= 480px - iPhone 12/13/14, Pixel)
+   - Mobile & Tablet Portrait (<= 768px)
+   - Tablets & Small Laptops (<= 1024px)
    ========================================================================== */
 
-/* --- TABLETS & SMALL DESKTOPS (<= 1024px) --- */
+/* --- GLOBAL MOBILE ACCESSIBILITY & STABILITY --- */
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+}
+
+button, a, input, select, textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 240, 255, 0.15);
+}
+
+/* Ensure no media causes layout blowout */
+img, video, iframe, svg, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   TABLETS & SMALL DESKTOPS (<= 1024px)
+   ========================================================================== */
 @media (max-width: 1024px) {
   .nav-menu {
-    gap: 20px;
+    gap: 18px;
   }
-  
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
+  .nav-link {
+    font-size: 0.82rem;
   }
 
-  .pricing-card.popular {
+  .classes-grid,
+  .trainers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .paid-plans-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: 960px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+
+  .paid-card.pro-popular {
     transform: none;
   }
-  .pricing-card.popular:hover {
-    transform: translateY(-8px);
+  .paid-card.pro-popular:hover {
+    transform: translateY(-6px);
   }
 
   .stats-card-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
+    padding: 24px 20px;
   }
 
   .stat-item:nth-child(2)::after {
     display: none;
   }
 
-  .dual-banner {
+  .contact-layout-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .dual-col.gym-side {
-    border-right: none;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .cta-banner-card {
-    grid-template-columns: 1fr;
-    padding: 44px 32px;
-  }
-
-  .cta-perks-list {
-    border-left: none;
-    padding-left: 0;
-    border-top: 2px solid var(--accent-lime-border);
-    padding-top: 24px;
-  }
-
-  .footer-top-grid {
-    grid-template-columns: 1fr 1fr;
     gap: 36px;
   }
 
-  .contact-layout-grid {
-    grid-template-columns: 1fr;
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
   }
 }
 
-/* --- MOBILE LANDSCAPE & TABLETS (<= 768px) --- */
+/* ==========================================================================
+   MOBILE PHONES & TABLET PORTRAIT (<= 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
+  /* Container & Section Padding */
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+    width: 100%;
+  }
+
   .section {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .section-sm {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-size: clamp(1.85rem, 6vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  /* Top Announcement Bar */
+  .top-bar {
+    padding: 6px 0;
   }
 
   .top-bar-inner {
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     text-align: center;
   }
 
@@ -79,119 +129,604 @@
     display: none;
   }
 
+  .top-bar-announcement {
+    font-size: 0.74rem;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+
+  /* Navbar & Brand Header */
+  .navbar {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-container {
+    height: 68px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .logo-symbol {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo-name {
+    font-size: 1.3rem;
+  }
+
+  .logo-tagline {
+    display: none; /* Hide sub-tagline to ensure clean navbar layout */
+  }
+
+  /* Hide desktop menu & action button in navbar on mobile */
   .nav-menu,
   .studio-status-pill,
-  .nav-actions .btn-lime {
-    display: none;
+  .nav-actions .btn {
+    display: none !important;
   }
 
   .hamburger-btn {
     display: flex;
+    width: 44px;
+    height: 44px;
+    padding: 11px 7px;
+    align-items: center;
+    justify-content: center;
   }
 
+  /* Mobile Navigation Drawer */
+  .mobile-nav-drawer {
+    width: 86%;
+    max-width: 330px;
+    padding: 24px 20px 30px;
+    z-index: 1050;
+  }
+
+  .mobile-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobile-drawer-close-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .mobile-drawer-close-btn:active,
+  .mobile-drawer-close-btn:hover {
+    background: rgba(0, 240, 255, 0.15);
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+  }
+
+  .mobile-nav-links {
+    gap: 12px;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.1rem;
+    padding: 10px 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-drawer-footer {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  /* Hero Section */
   .hero-section {
     min-height: auto;
-    padding: 60px 0 80px;
+    padding: 48px 0 56px;
   }
 
   .hero-title {
-    font-size: 2.6rem;
+    font-size: clamp(2.1rem, 7.5vw, 2.9rem);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    word-break: break-word;
   }
 
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.98rem;
+    margin-bottom: 24px;
+    line-height: 1.55;
   }
 
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+    width: 100%;
   }
 
   .hero-actions .btn {
     width: 100%;
+    min-height: 48px;
   }
 
+  .hero-proof {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  .hero-glow-orb {
+    width: 260px;
+    height: 260px;
+    left: -40px;
+    top: 5%;
+    opacity: 0.4;
+  }
+
+  /* Quick Stats Bar */
   .stats-bar-section {
     margin-top: 0;
+    margin-bottom: 30px;
   }
 
   .stats-card-grid {
-    grid-template-columns: 1fr 1fr;
-    padding: 24px 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 20px 14px;
   }
 
-  .why-us-grid {
+  .stat-item {
+    padding: 0 8px;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  /* Classes & Disciplines Cards */
+  .classes-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
 
-  .classes-grid,
+  .class-thumb {
+    height: 210px;
+  }
+
+  .class-body {
+    padding: 22px 18px;
+  }
+
+  .class-meta-list {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.78rem;
+  }
+
+  /* Trainers Grid */
   .trainers-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 450px;
+    margin: 0 auto;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
+  .trainer-img-wrapper {
+    height: 320px;
   }
 
-  .footer-top-grid {
-    grid-template-columns: 1fr;
+  .trainer-info {
+    padding: 22px 18px;
   }
 
-  .footer-bottom {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
+  /* Classes Schedule Timetable & Filters (classes.html) */
+  .day-tabs-bar {
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+    gap: 6px;
+    scrollbar-width: thin;
   }
 
-  .floating-whatsapp-btn {
-    bottom: 20px;
-    right: 20px;
-    width: 52px;
-    height: 52px;
-  }
-
-  .floating-whatsapp-tooltip {
-    display: none;
-  }
-
-  .back-to-top-btn {
-    bottom: 20px;
-    right: 80px;
-  }
-
-  .modal-card {
-    padding: 28px 20px;
-  }
-
-  .author-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
+  .day-tab-btn {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .category-filter-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 14px;
+  }
+
+  .filter-pills-group {
+    gap: 8px;
+  }
+
+  .filter-pill {
+    padding: 7px 14px;
+    font-size: 0.76rem;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .schedule-search-input-wrap {
     width: 100%;
+    min-width: 0;
+  }
+
+  .schedule-search-input-wrap input {
+    min-height: 46px;
   }
 
   .schedule-cards-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .schedule-item-card {
+    padding: 20px 16px;
+  }
+
+  .schedule-footer-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .schedule-time-badge {
+    font-size: 0.8rem;
+  }
+
+  /* Membership Page: Free Trial Box & Paid Plans Grid (membership.html & index.html) */
+  .free-trial-container-box {
+    padding: 32px 20px;
+    margin-bottom: 40px;
+    border-radius: var(--radius-lg);
+  }
+
+  .free-trial-header-block {
+    margin-bottom: 24px;
+  }
+
+  .free-trial-big-heading {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+
+  .free-trial-short-text {
+    font-size: 0.95rem;
+  }
+
+  .free-trial-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .free-trial-btn-row {
+    margin-top: 4px;
+  }
+
+  .free-trial-btn-row button {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .paid-plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+
+  .paid-card {
+    padding: 34px 22px;
+  }
+
+  .paid-card.pro-popular {
+    transform: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .paid-card.pro-popular:hover {
+    transform: translateY(-4px);
+  }
+
+  .paid-amount {
+    font-size: 3.2rem;
+  }
+
+  /* Testimonials & Member Stories (testimonials.html & index.html) */
+  .testimonial-card-single {
+    padding: 24px 18px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-author-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .author-info-group {
+    width: 100%;
+  }
+
+  .transformation-tag {
+    font-size: 0.74rem;
+    padding: 4px 12px;
+  }
+
+  /* CTA Bottom Banner Card */
+  .cta-bottom-banner-card {
+    padding: 36px 22px !important;
+    gap: 24px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .cta-bottom-banner-card h2 {
+    font-size: 1.85rem !important;
+  }
+
+  .cta-bottom-banner-card .btn {
+    width: 100%;
+  }
+
+  /* Contact Page (contact.html) */
+  .contact-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .contact-info-card {
+    padding: 26px 18px;
+  }
+
+  .contact-info-list {
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .contact-info-item {
+    gap: 14px;
+  }
+
+  .contact-icon-bubble {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .contact-val {
+    font-size: 0.95rem;
+  }
+
+  .contact-form-box {
+    padding: 26px 18px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .map-wrapper {
+    height: 220px;
+  }
+
+  /* Form Controls iOS Safari Auto-Zoom Fix & Tap Target Accessibility */
+  .form-control,
+  input,
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+    min-height: 48px;
+    padding: 12px 14px;
+  }
+
+  textarea.form-control {
+    min-height: 110px;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    padding: 16px 12px;
+  }
+
+  .modal-card {
+    padding: 28px 18px 24px;
+    max-height: 88vh;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-close-btn {
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+  }
+
+  /* Floating Sticky Action Buttons */
+  .floating-whatsapp-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .floating-whatsapp-btn svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .floating-whatsapp-tooltip {
+    display: none !important;
+  }
+
+  .back-to-top-btn {
+    bottom: 16px;
+    right: 74px;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Toast Notification Bar */
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    top: 16px;
+    max-width: calc(100% - 32px);
+  }
+
+  .toast-item {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* Site Footer */
+  .site-footer {
+    padding: 50px 0 24px;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 36px;
+  }
+
+  .footer-desc {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
   }
 }
 
-/* --- SMALL MOBILES (<= 480px) --- */
+/* ==========================================================================
+   SMALL MOBILE PHONES (<= 480px)
+   ========================================================================== */
 @media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
+  }
+
+  .stats-card-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 12px;
+  }
+
+  .stat-number {
+    font-size: 1.9rem;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .btn-sm {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .free-trial-container-box {
+    padding: 24px 14px;
+  }
+
+  .free-trial-big-heading {
+    font-size: 1.65rem;
+  }
+
+  .paid-card {
+    padding: 28px 16px;
+  }
+
+  .paid-amount {
+    font-size: 2.8rem;
+  }
+
+  .paid-currency {
+    font-size: 1.5rem;
+  }
+
+  .mobile-nav-drawer {
+    width: 90%;
+    max-width: 310px;
+    padding: 20px 16px 24px;
+  }
+}
+
+/* ==========================================================================
+   EXTRA-SMALL MOBILE SCREENS (<= 360px - iPhone SE / compact Android)
+   ========================================================================== */
+@media (max-width: 360px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
   }
 
   .stats-card-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 12px;
   }
 
   .stat-item:not(:last-child)::after {
@@ -200,7 +735,7 @@
 
   .stat-item {
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 14px;
+    padding-bottom: 10px;
   }
 
   .stat-item:last-child {
@@ -208,13 +743,22 @@
     padding-bottom: 0;
   }
 
-  .hero-proof {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  .floating-whatsapp-btn {
+    right: 12px;
+    bottom: 12px;
+    width: 46px;
+    height: 46px;
   }
 
-  .proof-avatars {
-    margin-left: 0;
+  .back-to-top-btn {
+    right: 64px;
+    bottom: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-nav-drawer {
+    width: 94%;
+    padding: 18px 14px 20px;
   }
 }
